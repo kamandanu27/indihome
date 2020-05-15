@@ -5,7 +5,7 @@ session_start();
 }
   
  if(!isset($_SESSION['user'])) {
-    echo "<script>window.location='".base_url("")."';</script>";
+    echo "<script>window.location='".base_url("login")."';</script>";
   }
 ?>
 <!DOCTYPE html>
@@ -23,6 +23,8 @@ session_start();
     <link href="assets/css/custom-styles.css" rel="stylesheet" />
      <!-- Google Fonts-->
    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+   <!-- TABLE STYLES-->
+   <link href="assets/js/dataTables/dataTables.bootstrap.css" rel="stylesheet" />
 </head>
 <body>
 	<div id="wrapper">
@@ -50,7 +52,38 @@ session_start();
     <script src="assets/js/bootstrap.min.js"></script>
     <!-- Metis Menu Js -->
     <script src="assets/js/jquery.metisMenu.js"></script>
-    
+    <!-- DATA TABLE SCRIPTS -->
+    <script src="assets/js/dataTables/jquery.dataTables.js"></script>
+    <script src="assets/js/dataTables/dataTables.bootstrap.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('#dataTables-example').dataTable();
+            });
+    </script>
+      <!-- Custom Js -->
+    <script src="assets/js/custom-scripts.js"></script>
+
+    <script>
+
+
+      //saat pilihan provinsi di pilih, maka akan mengambil data kota
+      //di data-wilayah.php menggunakan ajax
+      $("#provinsi").change(function(){
+        var id_provinsi = $(this).val(); 
+        $.ajax({
+            type: "POST",
+            dataType: "html",
+            url: "data_wilayah.php?jenis=kota",
+            data: "id_provinsi="+id_provinsi,
+            success: function(msg){
+              $("select#kota").html(msg); 
+              getAjaxKota();                                                        
+            }
+        });                   
+      }); 
+      
+    </script>
+
    
 </body>
 </html>

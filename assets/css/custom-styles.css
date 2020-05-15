@@ -216,6 +216,15 @@ color: #8d8888;
 .chat-img>img {
     margin-left:20px;
 }
+
+footer{
+    height:50px;
+    line-height:50px;
+ 
+    position:absolute;
+    bottom:0px;
+}
+
 footer p{
 font-size: 14px;
 }
