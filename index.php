@@ -9,7 +9,8 @@
     <meta name="description" content="Agent Indihome Terpercaya">
     <meta name="keywords" content="indihome, paket indihome, daftar indihome, pasang wifi, pasang indihome, wifi rumah, langganan indihome, indihome bekasi, indihome jakarta, indihome depok, pasang wifi dirumah, indihome bogor, indihome tangerang, indihome jakarta timur, indihome manado, indihome jakarta barat, indihome paket, tv berlangganan, indihome jakarta selatan, internet unlimited, paket internet, pasang internet, indihome murah, indihome kendari, indihome makassar, internet rumah, pasang indihome tangerang, registrasi indihome, indihome palembang, pasang internet rumah">
     <meta name="csrf-token" content="uzCbJCeMdtKZkN76v2DAoiMnA0Q3AxxJYlJ9niwU">
-    <title>Streamix</title>
+    <title>INDIHOME</title>
+    <link rel="icon" href="aset/indihome.png">
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://pasangindihome.online/fonts.gstatic.com">
     <link rel="stylesheet" href="style/bootstrap.min.css">
@@ -266,7 +267,7 @@
                 
                 <div class="col-lg-12 text-center">
                     <img src="https://pasangindihome.online/images_new/bonus-paket-streamix-20.png" class="img-fluid text-center" alt="Indihome Gold">
-                  <a class="btn btn-danger text-center" href="https://pasangindihome.online/order?slug=naru&packageId=306&utm_source=google_ads&utm_medium=paid_media&utm_campaign=google_ads_treg3_indihome_brand_form3&form=form3">Daftar Sekarang</a>
+                  <a class="btn btn-danger text-center" href="daftar">Daftar Sekarang</a>
                 </div>
               </div>
             </div>

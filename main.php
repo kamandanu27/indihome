@@ -68,19 +68,32 @@ session_start();
 
       //saat pilihan provinsi di pilih, maka akan mengambil data kota
       //di data-wilayah.php menggunakan ajax
-      $("#provinsi").change(function(){
-        var id_provinsi = $(this).val(); 
-        $.ajax({
-            type: "POST",
-            dataType: "html",
-            url: "data_wilayah.php?jenis=kota",
-            data: "id_provinsi="+id_provinsi,
-            success: function(msg){
-              $("select#kota").html(msg); 
-              getAjaxKota();                                                        
-            }
-        });                   
-      }); 
+      $("#id_kab_kota").change(function(){
+      var id_kab_kota = $(this).val(); 
+      $.ajax({
+          type: "POST",
+          dataType: "html",
+          url: "data_wilayah.php?jenis=kecamatan",
+          data: "id_kab_kota="+id_kab_kota,
+          success: function(msg){
+            $("select#id_kecamatan").html(msg); 
+            getAjaxKota();                                                        
+          }
+      });                   
+    }); 
+
+    $("#id_kecamatan").change(function(){
+      var id_kecamatan = $(this).val(); 
+      $.ajax({
+          type: "POST",
+          dataType: "html",
+          url: "data_wilayah.php?jenis=kelurahan",
+          data: "id_kecamatan="+id_kecamatan,
+          success: function(msg){
+            $("select#id_kelurahan").html(msg);                                                      
+          }
+      });                   
+    }); 
       
     </script>
 

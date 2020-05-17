@@ -17,13 +17,13 @@
 
   //ambil data kecamatan
   case 'kecamatan':
-  $id_regencies = $_POST['id_regencies'];
-  if($id_regencies == ''){
+  $id_kab_kota = $_POST['id_kab_kota'];
+  if($id_kab_kota == ''){
        exit;
   }else{
-       $getcity = mysqli_query($con,"SELECT  * FROM districts WHERE regency_id ='$id_regencies' ORDER BY name ASC") or die ('Query Gagal');
+       $getcity = mysqli_query($con,"SELECT  * FROM tbl_kecamatan WHERE id_kab_kota ='$id_kab_kota' ORDER BY nama_kecamatan ASC") or die ('Query Gagal');
        while($data = mysqli_fetch_array($getcity)){
-            echo '<option value="'.$data['id'].'">'.$data['name'].'</option>';
+            echo '<option value="'.$data['id_kecamatan'].'">'.$data['nama_kecamatan'].'</option>';
        }
        exit;    
   }
@@ -31,13 +31,13 @@
   
   //ambil data kelurahan
   case 'kelurahan':
-  $id_district = $_POST['id_district'];
-  if($id_district == ''){
+  $id_kecamatan = $_POST['id_kecamatan'];
+  if($id_kecamatan == ''){
        exit;
   }else{
-       $getcity = mysqli_query($con,"SELECT  * FROM villages WHERE district_id ='$id_district' ORDER BY name ASC") or die ('Query Gagal');
+       $getcity = mysqli_query($con,"SELECT * FROM tbl_kelurahan WHERE id_kecamatan ='$id_kecamatan' ORDER BY nama_kelurahan ASC") or die ('Query Gagal');
        while($data = mysqli_fetch_array($getcity)){
-            echo '<option value="'.$data['id'].'">'.$data['name'].'</option>';
+            echo '<option value="'.$data['id_kelurahan'].'">'.$data['nama_kelurahan'].'</option>';
        }
        exit;    
   }

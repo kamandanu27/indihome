@@ -54,8 +54,9 @@ require_once "../koneksi/config.php";
 			echo "<script>alert('Login Gagal, Pastikan Username & Password Benar!');window.reload;</script>";
 		  }else{
 			$data = mysqli_fetch_array($query);
+				$_SESSION['id_user'] = $data['id_user'];
 				$_SESSION['user'] = $user;
-				$_SESSION['level'] = $data['level'];              
+				$_SESSION['level'] = $data['level'];
 				echo "<script language='javascript'>alert('Login Berhasil!');window.location='../main.php?module=home';</script>";
 			}
 		}
