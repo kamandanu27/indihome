@@ -44,24 +44,16 @@ if(isset($_GET['act'])){
                                     </div>
 
                                     <div class="form-group"> 
-                                        <label class="col-sm-2  control-label">Provinsi</label>
-                                        <div class="col-sm-10">
-                                            <select class="form-control" name="provinsi" id="provinsi" placeholder="Wilayah Provinsi" required>
-                                                <option></option>
-                                                <?php
-                                                    $sql_provinsi = mysqli_query($con,"SELECT * FROM tbl_provinsi ORDER BY nama_provinsi ASC");                   
-                                                    while($rs_provinsi = mysqli_fetch_assoc($sql_provinsi)){ 
-                                                    echo '<option value="'.$rs_provinsi['id_provinsi'].'">'.$rs_provinsi['nama_provinsi'].'</option>';
-                                                    }                        
-                                                ?>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group"> 
                                         <label class="col-sm-2  control-label">Wilayah</label>
                                         <div class="col-sm-10">
                                             <select class="form-control" name="kota" id="kota" placeholder="Wilayah Kab/Kota" required>
-                                                <option></option>
+                                            <option></option>
+                                                <?php
+                                                    $sql_kab_kota = mysqli_query($con,"SELECT * FROM tbl_kab_kota where id_provinsi = '63' ORDER BY id_kab_kota ASC");                   
+                                                    while($rs_kab_kota = mysqli_fetch_assoc($sql_kab_kota)){ 
+                                                    echo '<option value="'.$rs_kab_kota['id_kab_kota'].'">'.$rs_kab_kota['nama_kab_kota'].'</option>';
+                                                    }                  
+                                                ?>
                                             </select>
                                         </div>
                                     </div>
@@ -81,7 +73,6 @@ if(isset($_GET['act'])){
     }if($_GET['act'] == 'e'){
         $q_data 	= mysqli_query($con,"SELECT * FROM tbl_karyawan 
         inner join tbl_kab_kota on tbl_karyawan.id_kab_kota = tbl_kab_kota.id_kab_kota 
-        inner join tbl_provinsi on tbl_kab_kota.id_provinsi = tbl_provinsi.id_provinsi
         inner join tbl_user on tbl_karyawan.id_user = tbl_user.id_user
         where tbl_karyawan.nik = '$_GET[id]'");
         $data			= mysqli_fetch_array($q_data);
@@ -113,26 +104,17 @@ if(isset($_GET['act'])){
                                     </div>
 
                                     <div class="form-group"> 
-                                        <label class="col-sm-2  control-label">Provinsi</label>
-                                        <div class="col-sm-10">
-                                            <select class="form-control" name="provinsi" id="provinsi" placeholder="Wilayah Provinsi" required>
-                                                <option value="<?php echo $data['id_provinsi'] ?>"><?php echo $data['nama_provinsi'] ?></option>
-                                                <option>- Pilih Provinsi -</option>
-                                                <?php
-                                                    $sql_provinsi = mysqli_query($con,"SELECT * FROM tbl_provinsi ORDER BY nama_provinsi ASC");                   
-                                                    while($rs_provinsi = mysqli_fetch_assoc($sql_provinsi)){ 
-                                                    echo '<option value="'.$rs_provinsi['id_provinsi'].'">'.$rs_provinsi['nama_provinsi'].'</option>';
-                                                    }                        
-                                                ?>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group"> 
                                         <label class="col-sm-2  control-label">Wilayah</label>
                                         <div class="col-sm-10">
                                             <select class="form-control" name="kota" id="kota" placeholder="Wilayah Kab/Kota" required>
                                                 <option value="<?php echo $data['id_kab_kota'] ?>"><?php echo $data['nama_kab_kota'] ?></option>
                                                 <option></option>
+                                                <?php 
+                                                $sql_kab_kota = mysqli_query($con,"SELECT * FROM tbl_kab_kota where id_provinsi = '63' ORDER BY id_kab_kota ASC");                   
+                                                    while($rs_kab_kota = mysqli_fetch_assoc($sql_kab_kota)){ 
+                                                    echo '<option value="'.$rs_kab_kota['id_kab_kota'].'">'.$rs_kab_kota['nama_kab_kota'].'</option>';
+                                                    }
+                                                ?>
                                             </select>
                                         </div>
                                     </div>
@@ -140,7 +122,7 @@ if(isset($_GET['act'])){
                                     <div class="form-group"> 
                                         <label class="col-sm-2  control-label">Password</label>
                                         <div class="col-sm-10">
-                                        <input type="text" class="form-control" name="password" placeholder="Kosongkan jika tidak ingin merubah password" required>
+                                        <input type="text" class="form-control" name="password" placeholder="Kosongkan jika tidak ingin merubah password">
                                         </div>
                                     </div>
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 17 Mei 2020 pada 20.16
+-- Generation Time: 19 Mei 2020 pada 20.01
 -- Versi Server: 10.1.28-MariaDB
 -- PHP Version: 7.1.10
 
@@ -31,15 +31,17 @@ SET time_zone = "+00:00";
 CREATE TABLE `tbl_addon` (
   `id_addon` varchar(15) NOT NULL,
   `nama_layanan` varchar(100) DEFAULT NULL,
-  `harga` int(11) DEFAULT NULL
+  `harga` int(11) DEFAULT NULL,
+  `banner` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `tbl_addon`
 --
 
-INSERT INTO `tbl_addon` (`id_addon`, `nama_layanan`, `harga`) VALUES
-('ADD001', 'HOOQ', 80000);
+INSERT INTO `tbl_addon` (`id_addon`, `nama_layanan`, `harga`, `banner`) VALUES
+('ADD001', 'HOOQ', 80000, '1589863240_hooq-home.jpg'),
+('ADD002', 'Catchplay+', 100000, '1589863633_catchplay-new.jpg');
 
 -- --------------------------------------------------------
 
@@ -591,7 +593,8 @@ CREATE TABLE `tbl_karyawan` (
 --
 
 INSERT INTO `tbl_karyawan` (`nik`, `nama_karyawan`, `id_kab_kota`, `id_user`) VALUES
-('11000001', 'Kamandanu Sugiarto', 6372, 6);
+('11000001', 'Kamandanu Sugiarto', 6372, 6),
+('11000002', 'Alzam Gibran Al Fatih', 6303, 14);
 
 -- --------------------------------------------------------
 
@@ -88501,7 +88504,7 @@ CREATE TABLE `tbl_pelanggan` (
 --
 
 INSERT INTO `tbl_pelanggan` (`id_pelanggan`, `nama_pelanggan`, `alamat`, `id_kab_kota`, `id_kecamatan`, `id_kelurahan`, `no_tlp`, `email`, `password`, `foto_ktp`, `foto_selfie`, `no_inet`, `id_paket`, `tgl_jtt`, `id_user`, `status`) VALUES
-(7, 'Kamandanu Sugiarto', 'Puri Indah Residance', '6372', '6372011', '6372011002', '082295644497', 'kamandanu.mataramtsk@gmail.com', 'kamandanu', '1589730251_ktp.jpg', '1589730251_selfie.jpg', '965695739', 2, '2020-05-18', 13, 'Aktif');
+(7, 'Kamandanu Sugiarto', 'Puri Indah Residance', '6372', '6372011', '6372011002', '082295644497', 'kamandanu.mataramtsk@gmail.com', 'kamandanu', '1589730251_ktp.jpg', '1589730251_selfie.jpg', '573309332', 2, '2020-05-20', 13, 'Aktif');
 
 -- --------------------------------------------------------
 
@@ -88557,6 +88560,27 @@ INSERT INTO `tbl_provinsi` (`id_provinsi`, `nama_provinsi`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `tbl_upgrade`
+--
+
+CREATE TABLE `tbl_upgrade` (
+  `id_upgrade` int(11) NOT NULL,
+  `no_inet` varchar(20) NOT NULL,
+  `id_addon` varchar(15) NOT NULL,
+  `status` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `tbl_upgrade`
+--
+
+INSERT INTO `tbl_upgrade` (`id_upgrade`, `no_inet`, `id_addon`, `status`) VALUES
+(5, '965695739', 'ADD001', 'Menunggu Berhenti'),
+(8, '965695739', 'ADD002', 'Aktif');
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `tbl_user`
 --
 
@@ -88575,7 +88599,8 @@ INSERT INTO `tbl_user` (`id_user`, `username`, `password`, `level`) VALUES
 (1, 'admin', 'admin', 'admin'),
 (3, 'danu', 'danu', 'pelanggan'),
 (6, '11000001', '11000001', 'karyawan'),
-(13, 'kamandanu.mataramtsk@gmail.com', 'kamandanu', 'pelanggan');
+(13, 'kamandanu.mataramtsk@gmail.com', 'kamandanu', 'pelanggan'),
+(14, '11000002', '11000002', 'karyawan');
 
 --
 -- Indexes for dumped tables
@@ -88633,6 +88658,12 @@ ALTER TABLE `tbl_provinsi`
   ADD PRIMARY KEY (`id_provinsi`);
 
 --
+-- Indexes for table `tbl_upgrade`
+--
+ALTER TABLE `tbl_upgrade`
+  ADD PRIMARY KEY (`id_upgrade`);
+
+--
 -- Indexes for table `tbl_user`
 --
 ALTER TABLE `tbl_user`
@@ -88655,10 +88686,16 @@ ALTER TABLE `tbl_pelanggan`
   MODIFY `id_pelanggan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
+-- AUTO_INCREMENT for table `tbl_upgrade`
+--
+ALTER TABLE `tbl_upgrade`
+  MODIFY `id_upgrade` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
 -- AUTO_INCREMENT for table `tbl_user`
 --
 ALTER TABLE `tbl_user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)

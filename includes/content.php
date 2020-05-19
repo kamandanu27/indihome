@@ -17,6 +17,12 @@ if(isset($_SESSION['level'])){
 		if ($_GET['module']=='profil'){
 			include "view_profil.php";
 		}
+		if ($_GET['module']=='laporan_pembayaran'){
+			include "view_laporan_pembayaran.php";
+		}
+		if ($_GET['module']=='laporan_pelanggan'){
+			include "view_laporan_pelanggan.php";
+		}
 
 	}
 
@@ -40,12 +46,18 @@ if(isset($_SESSION['level'])){
 		if ($_GET['module']=='profil'){
 			include "view_profil.php";
 		}
+		if ($_GET['module']=='layanan_addon'){
+			include "view_layanan_addon.php";
+		}
 		
 	}
 
 	if($_SESSION['level'] == 'pelanggan'){
 		if ($_GET['module']=='profil'){
 			include "view_profil.php";
+		}
+		if ($_GET['module']=='p_addon'){
+			include "view_pasang_addon.php";
 		}
 
 	}

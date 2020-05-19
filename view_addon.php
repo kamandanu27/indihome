@@ -12,7 +12,7 @@ if(isset($_GET['act'])){
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-lg-12">
-                            <form class="form-horizontal" method="POST" action="aksi_addon.php?act=t">
+                            <form class="form-horizontal" method="POST" action="aksi_addon.php?act=t" enctype="multipart/form-data">
                                 <div class="box-body">
                                 <?php 
                                 $carikode = mysqli_query($con, "SELECT id_addon from tbl_addon");
@@ -49,6 +49,13 @@ if(isset($_GET['act'])){
                                         <input type="number" class="form-control" name="harga" required>
                                         </div>
                                     </div>
+
+                                    <div class="form-group"> 
+                                        <label class="col-sm-3  control-label">Banner</label>
+                                        <div class="col-sm-9">
+                                        <input type="file" class="form-control" name="banner" required>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="box-footer" style="margin-top:50px;">
                                     <a href="main.php?module=addon" class="btn btn-warning btn-sm"><i class='fa fa-rotate-left'></i> Kembali</a>
@@ -76,7 +83,7 @@ if(isset($_GET['act'])){
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-lg-12">
-                            <form class="form-horizontal" method="POST" action="aksi_addon.php?act=e">
+                            <form class="form-horizontal" method="POST" action="aksi_addon.php?act=e" enctype="multipart/form-data">
                                 <div class="box-body">
 
                                     <div class="form-group"> 
@@ -97,6 +104,14 @@ if(isset($_GET['act'])){
                                         <label class="col-sm-3  control-label">Harga</label>
                                         <div class="col-sm-9">
                                         <input type="number" class="form-control" name="harga" value="<?php echo $data['harga'] ?>" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group"> 
+                                        <label class="col-sm-3  control-label">Banner</label>
+                                        <div class="col-sm-9">
+                                        <img src="assets/img/addon/<?php echo $data['banner'] ?>" width="200">
+                                        <input type="file" class="form-control" name="banner">
                                         </div>
                                     </div>
 
@@ -136,6 +151,7 @@ if(isset($_GET['act'])){
                             <thead>
                                 <tr>
                                     <th>No.</th>
+                                    <th>Banner</th>
                                     <th>Nama Layanan</th>
                                     <th>Harga</th>
                                     <th>Aksi</th>
@@ -148,6 +164,7 @@ if(isset($_GET['act'])){
                                 while($addon = mysqli_fetch_array($q_addon)){
                                     echo "<tr class='odd gradeX'>
                                         <td>$no</td>
+                                        <td><img src='assets/img/addon/$addon[banner]' style='width:100px; height:100px;'></td>
                                         <td>$addon[nama_layanan]</td>
                                         <td>$addon[harga]</td>
                                         <td>

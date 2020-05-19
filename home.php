@@ -46,6 +46,7 @@
     <?php 
         }
         if($cek['status'] == 'Aktif'){
+            $harga = number_format($cek['harga'],2,',','.');
     ?>
         <div class="row">
             <div class="col-md-6 col-sm-12 col-xs-12">
@@ -67,7 +68,16 @@
                     </div>
                     <div class="panel-body">
                         <i class="fa fa-plus-square fa-5x"></i>
-                        <h3>8,457</h3>
+                        <h4>Anda Berlangganan Add On</h4>
+                        <?php
+                        $q_upgrade = mysqli_query($con, "select * from tbl_upgrade 
+                        inner join tbl_addon on tbl_upgrade.id_addon = tbl_addon.id_addon 
+                        where tbl_upgrade.no_inet = '$cek[no_inet]' and tbl_upgrade.status = 'Aktif' 
+                        or tbl_upgrade.no_inet = '$cek[no_inet]' and tbl_upgrade.status = 'Menunggu Berhenti'");
+                        while($upgrade = mysqli_fetch_array($q_upgrade)){
+                            echo "[<span style='color:blue'>$upgrade[nama_layanan] </span>] ";
+                        }
+                        ?>
                     </div>
                 </div>
             </div>
@@ -76,10 +86,43 @@
                     <div class="panel-footer back-footer-red" style="background-color:#09192A;">
                         Tagihan
                     </div>
-                    <div class="panel-body">
-                        <i class="fa fa-credit-card fa-5x"></i>
-                        <h3>8,457</h3>
+                    <div class="row">
+                    
+                        <div class="col-md-4 col-sm-4 col-xs-4">
+                            <div class="panel-body text-right">
+                                <i class="fa fa-credit-card fa-5x"></i>
+                            </div>
+                        </div>
+
+                        <div class="col-md-8 col-sm-8 col-xs-8">
+                            <div class="panel-body text-left">
+                            <?php
+
+                            $q_paket = mysqli_query($con, "select * from tbl_pelanggan 
+                            inner join tbl_paket on tbl_paket.id_paket = tbl_pelanggan.id_pelanggan 
+                            where tbl_pelanggan.no_inet = '$cek[no_inet]' and tbl_pelanggan.status = 'Aktif' 
+                            or tbl_pelanggan.no_inet = '$cek[no_inet]' and tbl_pelanggan.status = 'Menunggu Berhenti'");
+                            $paket = mysqli_fetch_array($q_paket);
+                            $bayar_paket = $paket['harga'];
+
+                            $q_upgrade = mysqli_query($con, "SELECT sum(tbl_addon.harga) as total FROM tbl_upgrade 
+                            inner join tbl_addon on tbl_upgrade.id_addon = tbl_addon.id_addon
+                            where tbl_upgrade.no_inet = '$cek[no_inet]' and tbl_upgrade.status = 'Aktif' 
+                            or tbl_upgrade.no_inet = '$cek[no_inet]' and tbl_upgrade.status = 'Menunggu Berhenti'");
+                            $upgrade = mysqli_fetch_array($q_upgrade);
+                            $bayar_upgrade = $upgrade['total'];
+
+                            $t_bayar = $bayar_paket + $bayar_upgrade;
+
+                            $total_bayar = number_format($t_bayar,2,',','.');
+                            ?>
+                            <h4>Tagihan Bulanan anda sebesar </h4>
+                            <h3>Rp. <?php echo $total_bayar ?></h3>
+                            </div>
+                        </div>
                     </div>
+                    
+                    
                 </div>
             </div>
         </div> 

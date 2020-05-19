@@ -16,13 +16,10 @@
                         </ul>
                     </li>
 						<li>
-							<a href=""><i class="fa fa-desktop"></i> Laporan Pelanggan</a>
+							<a href="main.php?module=laporan_pelanggan"><i class="fa fa-desktop"></i> Laporan Pelanggan</a>
 						</li>
 						<li>
-							<a href=""><i class="fa fa-desktop"></i> Laporan Pembayaran</a>
-						</li>
-						<li>
-							<a href=""><i class="fa fa-desktop"></i> Laporan Pelanggan</a>
+							<a href="main.php?module=laporan_pembayaran"><i class="fa fa-desktop"></i> Laporan Pembayaran</a>
 						</li>
 					<?php 
 					}else if ($_SESSION['level'] == 'karyawan'){
@@ -42,10 +39,27 @@
 							</ul>
 						</li>
 						<li>
-							<a href="main.php?module=addon"><i class="fa fa-desktop"></i> Data Addon</a>
+							<a href=""><i class="fa fa-sitemap"></i> Layanan Add-on<span class="fa arrow"></span></a>
+							<ul class="nav nav-second-level">
+								<li>
+									<a href="main.php?module=layanan_addon&v=1"> Permintaan Aktifasi</a>
+								</li>
+								<li>
+									<a href="main.php?module=layanan_addon&v=2"> Data Pelanggan Aktif</a>
+								</li>
+								<li>
+									<a href="main.php?module=layanan_addon&v=3"> Permintaan Berhenti</a>
+								</li>
+								<li>
+									<a href="main.php?module=layanan_addon&v=4"> Data Berhenti Langganan</a>
+								</li>
+							</ul>
 						</li>
 						<li>
-							<a href="main.php?module=paket"><i class="fa fa-desktop"></i> Data Paket</a>
+							<a href="main.php?module=addon"><i class="fa fa-desktop"></i> Master Addon</a>
+						</li>
+						<li>
+							<a href="main.php?module=paket"><i class="fa fa-desktop"></i> Master Paket</a>
 						</li>
 						<li>
 							<a href=""><i class="fa fa-desktop"></i> Data Pembayaran</a>
@@ -54,19 +68,16 @@
 					}else if ($_SESSION['level'] == 'pelanggan'){
 						$q_cek = mysqli_query($con, "select * from tbl_user 
 						inner join tbl_pelanggan on tbl_user.id_user = tbl_pelanggan.id_user where tbl_user.id_user = '$_SESSION[id_user]' and tbl_pelanggan.status = 'Aktif'");
-						if(mysqli_num_rows($q_cek) > 1){
+						if(mysqli_num_rows($q_cek) > 0){
 						?>
 							<li>
-								<a href=""><i class="fa fa-desktop"></i> Data Pelanggan</a>
+								<a href="main.php?module=p_addon"><i class="fa fa-plus"></i> Tambah Add On</a>
 							</li>
 							<li>
-								<a href="main.php?module=addon"><i class="fa fa-desktop"></i> Data Addon</a>
+								<a href="main.php?module=p_addon"><i class="fa fa-flag"></i> Lapor Gangguan</a>
 							</li>
 							<li>
-								<a href="main.php?module=paket"><i class="fa fa-desktop"></i> Data Paket</a>
-							</li>
-							<li>
-								<a href=""><i class="fa fa-desktop"></i> Data Pembayaran</a>
+								<a href="main.php?module=paket"><i class="fa fa-qrcode" aria-hidden="true"></i> Riwayat</a>
 							</li>
 						<?php 
 						}
