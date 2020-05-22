@@ -131,7 +131,6 @@ if(isset($_SESSION['level'])){
                         echo "<script>window.alert('Data Pelanggan Baru Berhasil Dirubah');
                                 window.location=('main.php?module=pelanggan_baru')</script>";
                 }
-
                 if($_GET['act'] == 'h_baru'){
                         $id = $_GET['id'];
                         $q_iduser = mysqli_query($con, "select * from tbl_pelanggan where id_pelanggan = '$id'");
@@ -151,9 +150,13 @@ if(isset($_SESSION['level'])){
 
                         for ($i= 0; $i <= 1; $i++)
                         {
-                        $n_inet = mt_rand(1,999999999); 
-                        $q_cek = mysqli_query($con, "select * from tbl_pelanggan where no_inet = '$n_inet'");
-                                if(mysqli_num_rows($q_cek) > 0)
+                        $n_inet_p1 = mt_rand(1,999999); 
+                        $n_inet_p2 = mt_rand(1,999999); 
+
+                        $n_inet = $n_inet_p1.$n_inet_p2; 
+
+                        $q_inet = mysqli_query($con, "select * from tbl_pelanggan where no_inet = '$n_inet'");
+                                if(mysqli_num_rows($q_inet) > 0)
                                 {
                                         $i = 0;
                                 }else{

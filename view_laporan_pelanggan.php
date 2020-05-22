@@ -20,10 +20,7 @@ require_once "koneksi/config.php";
                                     <th>No. Inet</th>
                                     <th>Tgl. Jtt</th>
                                     <th>No. Hp</th>
-                                    <th>Alamat</th>
                                     <th>Kota / Kab</th>
-                                    <th>Kecamatan</th>
-                                    <th>Kelurahan</th>
                                     <th>Paket</th>
                                     <th>Add On</th>
                                 </tr>
@@ -44,10 +41,7 @@ require_once "koneksi/config.php";
                                         <td>$pelanggan[no_inet]</td>
                                         <td>$pelanggan[tgl_jtt]</td>
                                         <td>$pelanggan[no_tlp]</td>
-                                        <td>$pelanggan[alamat]</td>
                                         <td>$pelanggan[nama_kab_kota]</td>
-                                        <td>$pelanggan[nama_kecamatan]</td>
-                                        <td>$pelanggan[nama_kelurahan]</td>
                                         <td>$pelanggan[nama_paket]</td>
                                         <td>";
                                         $q_upgrade = mysqli_query($con, "select * from tbl_upgrade 

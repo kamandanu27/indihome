@@ -99,7 +99,7 @@
                             <?php
 
                             $q_paket = mysqli_query($con, "select * from tbl_pelanggan 
-                            inner join tbl_paket on tbl_paket.id_paket = tbl_pelanggan.id_pelanggan 
+                            inner join tbl_paket on tbl_pelanggan.id_paket = tbl_paket.id_paket
                             where tbl_pelanggan.no_inet = '$cek[no_inet]' and tbl_pelanggan.status = 'Aktif' 
                             or tbl_pelanggan.no_inet = '$cek[no_inet]' and tbl_pelanggan.status = 'Menunggu Berhenti'");
                             $paket = mysqli_fetch_array($q_paket);
@@ -128,57 +128,101 @@
         </div> 
     <?php 
         }
+    }//akhir pelanggan
+
+    if ($_SESSION['level'] == 'karyawan' or $_SESSION['level'] == 'admin'){
+        $q_wilayah = mysqli_query($con, "select * from tbl_karyawan where tbl_karyawan.id_user = '$_SESSION[id_user]'");
+        $wilayah = mysqli_fetch_array($q_wilayah);
+        $id_wilayah = $wilayah['id_kab_kota'];
+    ?>
+        <div class="row">
+            <div class="col-md-3 col-sm-12 col-xs-12">
+                <div class="panel panel-primary text-center no-boder bg-color-green">
+                    <div class="panel-body">
+                        <i class="fa fa-bar-chart-o fa-5x"></i>
+                        <?php
+                        if($_SESSION['level'] == 'admin'){
+                            $query = mysqli_query($con, "select count(*) as jumlah from tbl_pelanggan where status = 'Aktif'");
+                        }else{
+                            $query = mysqli_query($con, "select count(*) as jumlah from tbl_pelanggan where status = 'Aktif' and id_kab_kota = '$id_wilayah'");
+                        }
+                            $pelanggan = mysqli_fetch_array($query);
+                            $total = $pelanggan['jumlah'];
+                            echo "<h3>$total</h3>";
+                        ?>
+                        
+                    </div>
+                    <div class="panel-footer back-footer-green">
+                        Jumlah Pelanggan Aktif
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-12 col-xs-12">
+                <div class="panel panel-primary text-center no-boder bg-color-blue">
+                    <div class="panel-body">
+                        <i class="fa fa-shopping-cart fa-5x"></i>
+                        <?php
+                        if($_SESSION['level'] == 'admin'){
+                            $query = mysqli_query($con, "select count(*) as jumlah from tbl_upgrade inner join tbl_pelanggan on tbl_upgrade.no_inet = tbl_upgrade.no_inet 
+                            where tbl_upgrade.status = 'Aktif'");
+                        }else{
+                            $query = mysqli_query($con, "select count(*) as jumlah from tbl_upgrade inner join tbl_pelanggan on tbl_upgrade.no_inet = tbl_upgrade.no_inet 
+                            where tbl_upgrade.status = 'Aktif' and tbl_pelanggan.id_kab_kota = '$id_wilayah'");
+                        }
+                            $pelanggan = mysqli_fetch_array($query);
+                            $total = $pelanggan['jumlah'];
+                            echo "<h3>$total</h3>";
+                        ?>
+                    </div>
+                    <div class="panel-footer back-footer-blue">
+                        Upgrade Add-On Aktif
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-12 col-xs-12">
+                <div class="panel panel-primary text-center no-boder bg-color-red">
+                    <div class="panel-body">
+                        <i class="fa fa fa-comments fa-5x"></i>
+                        <?php
+                        if($_SESSION['level'] == 'admin'){
+                            $query = mysqli_query($con, "select count(*) as jumlah from tbl_gangguan inner join tbl_pelanggan on tbl_gangguan.no_inet = tbl_pelanggan.no_inet 
+                            where tbl_gangguan.status = 'Proses'");
+                        }else{
+                            $query = mysqli_query($con, "select count(*) as jumlah from tbl_gangguan inner join tbl_pelanggan on tbl_gangguan.no_inet = tbl_gangguan.no_inet 
+                            where tbl_gangguan.status = 'Proses' and tbl_pelanggan.id_kab_kota = '$id_wilayah'");
+                        }
+                            $pelanggan = mysqli_fetch_array($query);
+                            $total = $pelanggan['jumlah'];
+                            echo "<h3>$total</h3>";
+                        ?>
+                    </div>
+                    <div class="panel-footer back-footer-red">
+                        Proses Perbaikan Gangguan
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-12 col-xs-12">
+                <div class="panel panel-primary text-center no-boder bg-color-brown">
+                    <div class="panel-body">
+                        <i class="fa fa-users fa-5x"></i>
+                        <?php
+                        if($_SESSION['level'] == 'admin'){
+                            $query = mysqli_query($con, "select count(*) as jumlah from tbl_pelanggan where status = 'Berhenti'");
+                        }else{
+                            $query = mysqli_query($con, "select count(*) as jumlah from tbl_pelanggan where status = 'Berhenti' and id_kab_kota = '$id_wilayah'");
+                        }
+                            $pelanggan = mysqli_fetch_array($query);
+                            $total = $pelanggan['jumlah'];
+                            echo "<h3>$total</h3>";
+                        ?>
+                    </div>
+                    <div class="panel-footer back-footer-brown">
+                        Pelanggan Tidak Aktif
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php 
     }
     ?>
-                 <!-- /. ROW  -->
-                                 
-				<!-- <div class="row">
-                    <div class="col-md-3 col-sm-12 col-xs-12">
-                        <div class="panel panel-primary text-center no-boder bg-color-green">
-                            <div class="panel-body">
-                                <i class="fa fa-bar-chart-o fa-5x"></i>
-                                <h3>8,457</h3>
-                            </div>
-                            <div class="panel-footer back-footer-green">
-                                Daily Visits
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-12 col-xs-12">
-                        <div class="panel panel-primary text-center no-boder bg-color-blue">
-                            <div class="panel-body">
-                                <i class="fa fa-shopping-cart fa-5x"></i>
-                                <h3>52,160 </h3>
-                            </div>
-                            <div class="panel-footer back-footer-blue">
-                                Sales
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-12 col-xs-12">
-                        <div class="panel panel-primary text-center no-boder bg-color-red">
-                            <div class="panel-body">
-                                <i class="fa fa fa-comments fa-5x"></i>
-                                <h3>15,823 </h3>
-                            </div>
-                            <div class="panel-footer back-footer-red">
-                                Comments
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-12 col-xs-12">
-                        <div class="panel panel-primary text-center no-boder bg-color-brown">
-                            <div class="panel-body">
-                                <i class="fa fa-users fa-5x"></i>
-                                <h3>36,752 </h3>
-                            </div>
-                            <div class="panel-footer back-footer-brown">
-                                No. of Visits
-
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
+   

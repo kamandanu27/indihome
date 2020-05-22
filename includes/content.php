@@ -49,6 +49,9 @@ if(isset($_SESSION['level'])){
 		if ($_GET['module']=='layanan_addon'){
 			include "view_layanan_addon.php";
 		}
+		if ($_GET['module']=='layanan_gangguan'){
+			include "view_riwayat_gangguan.php";
+		}
 		
 	}
 
@@ -58,6 +61,12 @@ if(isset($_SESSION['level'])){
 		}
 		if ($_GET['module']=='p_addon'){
 			include "view_pasang_addon.php";
+		}
+		if ($_GET['module']=='lapor_gangguan'){
+			include "view_lapor_gangguan.php";
+		}
+		if ($_GET['module']=='riwayat_gangguan'){
+			include "view_riwayat_gangguan.php";
 		}
 
 	}

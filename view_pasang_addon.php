@@ -9,7 +9,7 @@ $pelanggan = mysqli_fetch_array($q_pelanggan);
         while($data = mysqli_fetch_array($q_addon)){
             $harga = number_format($data['harga'],2,',','.');
         ?>
-            <div class="col-lg-3">
+            <div class="col-sm-4">
             <form class="form-horizontal" method="POST" action="aksi_upgrade.php">
                 <div class="panel panel-danger" style="height: 250px;">
                     <div class="box-body">
@@ -47,6 +47,13 @@ $pelanggan = mysqli_fetch_array($q_pelanggan);
                                 if($upgrade['status'] == 'Menunggu Berhenti'){
 
                                     echo "<li style='color:red;'>Rp. $harga <span class='pull-right text-warning'> Request Berhenti</span></li>";
+
+                                }
+                                if($upgrade['status'] == 'Berhenti'){
+
+                                    echo "<input type='hidden' class='form-control' name='act' value='tambah'>"; 
+        
+                                    echo "<li style='color:red;'>Rp. $harga <button type='submit' class='pull-right btn-danger btn-sm' disable><i class='fa fa-plus'></i> Pasang</span></button></li>";
 
                                 }
 

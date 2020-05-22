@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 19 Mei 2020 pada 20.01
+-- Generation Time: 22 Mei 2020 pada 04.49
 -- Versi Server: 10.1.28-MariaDB
 -- PHP Version: 7.1.10
 
@@ -42,6 +42,29 @@ CREATE TABLE `tbl_addon` (
 INSERT INTO `tbl_addon` (`id_addon`, `nama_layanan`, `harga`, `banner`) VALUES
 ('ADD001', 'HOOQ', 80000, '1589863240_hooq-home.jpg'),
 ('ADD002', 'Catchplay+', 100000, '1589863633_catchplay-new.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tbl_gangguan`
+--
+
+CREATE TABLE `tbl_gangguan` (
+  `no_tiket_gangguan` varchar(15) NOT NULL,
+  `tgl_lapor` date NOT NULL,
+  `no_inet` varchar(15) NOT NULL,
+  `jenis` varchar(50) NOT NULL,
+  `deskripsi` text NOT NULL,
+  `status` varchar(15) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `tbl_gangguan`
+--
+
+INSERT INTO `tbl_gangguan` (`no_tiket_gangguan`, `tgl_lapor`, `no_inet`, `jenis`, `deskripsi`, `status`) VALUES
+('866808656711', '2020-05-22', '484904233159', 'Internet', 'akses internet sangat lambat. mohon untuk segera diperbaiki. Terimakasih', 'Proses'),
+('91758476480', '2020-05-21', '484904233159', 'Internet, Telepon', 'deskripsi keluhan', 'Selesai');
 
 -- --------------------------------------------------------
 
@@ -88504,7 +88527,8 @@ CREATE TABLE `tbl_pelanggan` (
 --
 
 INSERT INTO `tbl_pelanggan` (`id_pelanggan`, `nama_pelanggan`, `alamat`, `id_kab_kota`, `id_kecamatan`, `id_kelurahan`, `no_tlp`, `email`, `password`, `foto_ktp`, `foto_selfie`, `no_inet`, `id_paket`, `tgl_jtt`, `id_user`, `status`) VALUES
-(7, 'Kamandanu Sugiarto', 'Puri Indah Residance', '6372', '6372011', '6372011002', '082295644497', 'kamandanu.mataramtsk@gmail.com', 'kamandanu', '1589730251_ktp.jpg', '1589730251_selfie.jpg', '573309332', 2, '2020-05-20', 13, 'Aktif');
+(7, 'Kamandanu Sugiarto', 'Puri Indah Residance', '6372', '6372011', '6372011002', '082295644497', 'kamandanu.mataramtsk@gmail.com', 'kamandanu', '1589730251_ktp.jpg', '1589730251_selfie.jpg', '484904233159', 2, '2020-05-22', 13, 'Aktif'),
+(8, 'Cristiano Ronaldo', 'Spanyol', '6372', '6372011', '6372011002', '08265467776', 'cr7@gmail.com', 'cr7', '1590113292_ktp_2.jpg', '1590113292_selfie_2.jpg', '211111719117', 2, '2020-05-22', 15, 'Aktif');
 
 -- --------------------------------------------------------
 
@@ -88575,8 +88599,8 @@ CREATE TABLE `tbl_upgrade` (
 --
 
 INSERT INTO `tbl_upgrade` (`id_upgrade`, `no_inet`, `id_addon`, `status`) VALUES
-(5, '965695739', 'ADD001', 'Menunggu Berhenti'),
-(8, '965695739', 'ADD002', 'Aktif');
+(5, '484904233159', 'ADD001', 'Berhenti'),
+(8, '484904233159', 'ADD002', 'Aktif');
 
 -- --------------------------------------------------------
 
@@ -88600,7 +88624,8 @@ INSERT INTO `tbl_user` (`id_user`, `username`, `password`, `level`) VALUES
 (3, 'danu', 'danu', 'pelanggan'),
 (6, '11000001', '11000001', 'karyawan'),
 (13, 'kamandanu.mataramtsk@gmail.com', 'kamandanu', 'pelanggan'),
-(14, '11000002', '11000002', 'karyawan');
+(14, '11000002', '11000002', 'karyawan'),
+(15, 'cr7@gmail.com', 'cr7', 'pelanggan');
 
 --
 -- Indexes for dumped tables
@@ -88611,6 +88636,12 @@ INSERT INTO `tbl_user` (`id_user`, `username`, `password`, `level`) VALUES
 --
 ALTER TABLE `tbl_addon`
   ADD PRIMARY KEY (`id_addon`);
+
+--
+-- Indexes for table `tbl_gangguan`
+--
+ALTER TABLE `tbl_gangguan`
+  ADD PRIMARY KEY (`no_tiket_gangguan`);
 
 --
 -- Indexes for table `tbl_kab_kota`
@@ -88683,7 +88714,7 @@ ALTER TABLE `tbl_paket`
 -- AUTO_INCREMENT for table `tbl_pelanggan`
 --
 ALTER TABLE `tbl_pelanggan`
-  MODIFY `id_pelanggan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_pelanggan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `tbl_upgrade`
@@ -88695,7 +88726,7 @@ ALTER TABLE `tbl_upgrade`
 -- AUTO_INCREMENT for table `tbl_user`
 --
 ALTER TABLE `tbl_user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)

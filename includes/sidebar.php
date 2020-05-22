@@ -56,13 +56,24 @@
 							</ul>
 						</li>
 						<li>
+							<a href=""><i class="fa fa-sitemap"></i> Layanan Gangguan<span class="fa arrow"></span></a>
+							<ul class="nav nav-second-level">
+								<li>
+									<a href="main.php?module=layanan_gangguan&cari=Antri"> Status Antri</a>
+								</li>
+								<li>
+									<a href="main.php?module=layanan_gangguan&cari=Proses"> Status Dalam Proses</a>
+								</li>
+								<li>
+									<a href="main.php?module=layanan_gangguan&cari=Selesai"> Status Selesai</a>
+								</li>
+							</ul>
+						</li>
+						<li>
 							<a href="main.php?module=addon"><i class="fa fa-desktop"></i> Master Addon</a>
 						</li>
 						<li>
 							<a href="main.php?module=paket"><i class="fa fa-desktop"></i> Master Paket</a>
-						</li>
-						<li>
-							<a href=""><i class="fa fa-desktop"></i> Data Pembayaran</a>
 						</li>
 					<?php 
 					}else if ($_SESSION['level'] == 'pelanggan'){
@@ -74,10 +85,10 @@
 								<a href="main.php?module=p_addon"><i class="fa fa-plus"></i> Tambah Add On</a>
 							</li>
 							<li>
-								<a href="main.php?module=p_addon"><i class="fa fa-flag"></i> Lapor Gangguan</a>
+								<a href="main.php?module=lapor_gangguan"><i class="fa fa-flag"></i> Lapor Gangguan</a>
 							</li>
 							<li>
-								<a href="main.php?module=paket"><i class="fa fa-qrcode" aria-hidden="true"></i> Riwayat</a>
+								<a href="main.php?module=riwayat_gangguan"><i class="fa fa-qrcode" aria-hidden="true"></i> Riwayat Lapor Gangguan</a>
 							</li>
 						<?php 
 						}

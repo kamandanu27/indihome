@@ -31,8 +31,7 @@ require_once "koneksi/config.php";
                                 $no = 1;
                                 while($pelanggan = mysqli_fetch_array($q_pelanggan)){
 
-                                    $q_paket = mysqli_query($con, "select * from tbl_pelanggan 
-                                    inner join tbl_paket on tbl_paket.id_paket = tbl_pelanggan.id_pelanggan 
+                                    $q_paket = mysqli_query($con, "select * from tbl_pelanggan inner join tbl_paket on tbl_pelanggan.id_paket = tbl_paket.id_paket 
                                     where tbl_pelanggan.no_inet = '$pelanggan[no_inet]' and tbl_pelanggan.status = 'Aktif' 
                                     or tbl_pelanggan.no_inet = '$pelanggan[no_inet]' and tbl_pelanggan.status = 'Menunggu Berhenti'");
                                     $paket = mysqli_fetch_array($q_paket);

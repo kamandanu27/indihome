@@ -24,9 +24,6 @@ $id_wilayah = $wilayah['id_kab_kota'];
                                     <th>Tgl. Jtt</th>
                                     <th>No. Hp</th>
                                     <th>Alamat</th>
-                                    <th>Kota / Kab</th>
-                                    <th>Kecamatan</th>
-                                    <th>Kelurahan</th>
                                     <th>Keputusan</th>
                                     <th>Aksi</th>
                                 </tr>
@@ -47,9 +44,6 @@ $id_wilayah = $wilayah['id_kab_kota'];
                                         <td>$pelanggan[tgl_jtt]</td>
                                         <td>$pelanggan[no_tlp]</td>
                                         <td>$pelanggan[alamat]</td>
-                                        <td>$pelanggan[nama_kab_kota]</td>
-                                        <td>$pelanggan[nama_kecamatan]</td>
-                                        <td>$pelanggan[nama_kelurahan]</td>
                                         <td>
                                             <a href='aksi_pelanggan.php?&act=aktifkan&id=$pelanggan[id_pelanggan]' class='btn btn-info btn-xs'>
                                             <i class='fa fa-check'></i> Aktifkan</a>
