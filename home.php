@@ -221,7 +221,40 @@
                     </div>
                 </div>
             </div>
+
+            <?php 
+            if($_SESSION['level'] == 'admin'){
+            ?>
+            <div class="col-md-12 col-sm-12 col-xs-12">                     
+                <div class="panel panel-default">
+                <div class="panel-heading">
+                        Pelanggan Aktif
+                </div>
+                <div class="table-responsive">
+                    <div id="chart-container">
+                        <canvas id="graphCanvas"></canvas>
+                    </div>
+                </div>
+                </div>            
+            </div>
+
+            <div class="col-md-12 col-sm-12 col-xs-12">                     
+                <div class="panel panel-default">
+                <div class="panel-heading">
+                        Pendapatan
+                </div>
+                <div class="table-responsive">
+                    <div id="chart-container">
+                        <canvas id="graph_pendapatan_all"></canvas>
+                    </div>
+                </div>
+                </div>            
+            </div>
+            <?php 
+            }
+            ?>
         </div>
+
     <?php 
     }
     ?>

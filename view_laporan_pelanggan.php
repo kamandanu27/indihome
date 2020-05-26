@@ -6,8 +6,11 @@ require_once "koneksi/config.php";
             <!-- Advanced Tables -->
             <div class="panel panel-danger">
                 <div class="panel-heading">
-                    <h3>Data Pelanggan Aktif</h3>
+                    <h3>Data Pelanggan [<?php echo $_GET['cari']; ?>]</h3>
                     <div class="panel-heading text-right">
+                        <a href="tcpdf/examples/lap_pelanggan.php?&t=<?php echo $_GET['cari']; ?>" class="btn btn-default btn-sm" target="_blank">
+                            <i class="fa fa-print"> Cetak Pdf </i>
+                        </a>
                     </div>
                 </div>
                 <div class="panel-body">
@@ -26,13 +29,15 @@ require_once "koneksi/config.php";
                                 </tr>
                             </thead>
                             <tbody style="text-transform: uppercase;">
-                                <?php 
+                                <?php
+                                if(isset($_GET['cari'])){
                                 $q_pelanggan = mysqli_query($con ,"SELECT * FROM tbl_pelanggan 
                                 inner join tbl_kab_kota on tbl_pelanggan.id_kab_kota = tbl_kab_kota.id_kab_kota 
                                 inner join tbl_kecamatan on tbl_pelanggan.id_kecamatan = tbl_kecamatan.id_kecamatan 
                                 inner join tbl_kelurahan on tbl_pelanggan.id_kelurahan = tbl_kelurahan.id_kelurahan 
                                 inner join tbl_paket on tbl_pelanggan.id_paket = tbl_paket.id_paket 
-                                where tbl_pelanggan.status = 'Aktif'");
+                                where tbl_pelanggan.status = '$_GET[cari]'");
+                                }
                                 $no = 1;
                                 while($pelanggan = mysqli_fetch_array($q_pelanggan)){
                                     echo "<tr class='odd gradeX'>

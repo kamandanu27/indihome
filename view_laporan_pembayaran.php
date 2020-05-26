@@ -8,6 +8,9 @@ require_once "koneksi/config.php";
                 <div class="panel-heading">
                     <h3>Laporan Data Pembayaran</h3>
                     <div class="panel-heading text-right">
+                        <a href="tcpdf/examples/lap_pembayaran.php" class="btn btn-default btn-sm" target="_blank">
+                            <i class="fa fa-print"> Cetak Pdf </i>
+                        </a>
                     </div>
                 </div>
                 <div class="panel-body">
@@ -27,7 +30,7 @@ require_once "koneksi/config.php";
                                 <?php 
                                 $q_pelanggan = mysqli_query($con ,"SELECT * FROM tbl_pelanggan 
                                 inner join tbl_paket on tbl_pelanggan.id_paket = tbl_paket.id_paket 
-                                where status = 'Aktif'");
+                                where status = 'Aktif' or status = 'Menunggu Berhenti'");
                                 $no = 1;
                                 while($pelanggan = mysqli_fetch_array($q_pelanggan)){
 

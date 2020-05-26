@@ -7,20 +7,57 @@
 					<?php 
 					if ($_SESSION['level'] == 'admin'){
 					?>
-					<li>
-                        <a href=""><i class="fa fa-sitemap"></i> Input Data<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="main.php?module=karyawan">Data Karyawan</a>
-                            </li>
-                        </ul>
-                    </li>
 						<li>
-							<a href="main.php?module=laporan_pelanggan"><i class="fa fa-desktop"></i> Laporan Pelanggan</a>
+							<a href=""><i class="fa fa-sitemap"></i> Input Data<span class="fa arrow"></span></a>
+							<ul class="nav nav-second-level">
+								<li>
+									<a href="main.php?module=karyawan">Data Karyawan</a>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<a href=""><i class="fa fa-sitemap"></i> Laporan Pelanggan<span class="fa arrow"></span></a>
+							<ul class="nav nav-second-level">
+								<li>
+									<a href="main.php?module=laporan_pelanggan&cari=Aktif"> Aktif</a>
+								</li>
+								<li>
+									<a href="main.php?module=laporan_pelanggan&cari=Berhenti"> Berhenti</a>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<a href=""><i class="fa fa-sitemap"></i> Laporan Gangguan<span class="fa arrow"></span></a>
+							<ul class="nav nav-second-level">
+								<li>
+									<a href="main.php?module=layanan_gangguan&cari=Antri"> Status Antri</a>
+								</li>
+								<li>
+									<a href="main.php?module=layanan_gangguan&cari=Proses"> Status Dalam Proses</a>
+								</li>
+								<li>
+									<a href="main.php?module=layanan_gangguan&cari=Selesai"> Status Selesai</a>
+								</li>
+							</ul>
 						</li>
 						<li>
 							<a href="main.php?module=laporan_pembayaran"><i class="fa fa-desktop"></i> Laporan Pembayaran</a>
 						</li>
+						<li>
+							<a href=""><i class="fa fa-sitemap"></i> Laporan Rekap<span class="fa arrow"></span></a>
+							<ul class="nav nav-second-level">
+								<li>
+									<a href="main.php?module=menu_rekap&cari=pelanggan"> Wilayah Pelanggan</a>
+								</li>
+								<li>
+									<a href="main.php?module=menu_rekap&cari=gangguan"> Wilayah Gangguan</a>
+								</li>
+								<li>
+									<a href="main.php?module=menu_rekap&cari=pendapatan"> Wilayah Pendapatan</a>
+								</li>
+							</ul>
+						</li>
+						
 					<?php 
 					}else if ($_SESSION['level'] == 'karyawan'){
 					?>

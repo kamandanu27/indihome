@@ -201,7 +201,7 @@
 
                 <div class="col-7 pr-0 text-right">
                     <div class="header__logo-secondary text-center">
-                        <a href="https://www.indihome.co.id/"><img class="main-logo" 
+                        <a href="/telkom"><img class="main-logo" 
                         src="https://pasangindihome.online/images_new/logo-indihome-baru.png" alt="Indihome"></a><br>
                         <a class="btn btn-danger text-center" href="login">LOGIN</a>
                         

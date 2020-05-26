@@ -23,6 +23,12 @@ if(isset($_SESSION['level'])){
 		if ($_GET['module']=='laporan_pelanggan'){
 			include "view_laporan_pelanggan.php";
 		}
+		if ($_GET['module']=='layanan_gangguan'){
+			include "view_riwayat_gangguan.php";
+		}
+		if ($_GET['module']=='menu_rekap'){
+			include "view_menu_rekap.php";
+		}
 
 	}
 

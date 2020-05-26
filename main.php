@@ -19,6 +19,8 @@ session_start();
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
      <!-- FontAwesome Styles-->
     <link href="assets/css/font-awesome.css" rel="stylesheet" />
+         <!-- Morris Chart Styles-->
+         <link href="assets/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
         <!-- Custom Styles-->
     <link href="assets/css/custom-styles.css" rel="stylesheet" />
      <!-- Google Fonts-->
@@ -55,19 +57,24 @@ session_start();
     <!-- DATA TABLE SCRIPTS -->
     <script src="assets/js/dataTables/jquery.dataTables.js"></script>
     <script src="assets/js/dataTables/dataTables.bootstrap.js"></script>
+     <!-- charts Js -->
+    <script src="assets/js/charts/Chart.min.js"></script>
+    <script src="assets/js/charts/exporting.js"></script>
+
+    <script src="assets/js/morris/raphael-2.1.0.min.js"></script>
+    <script src="assets/js/morris/morris.js"></script>
         <script>
             $(document).ready(function () {
                 $('#dataTables-example').dataTable();
+                showGraph();
+                graph_pendapatan_all();
             });
     </script>
       <!-- Custom Js -->
-    <script src="assets/js/custom-scripts.js"></script>
+      <script src="assets/js/custom-scripts.js"></script>
+     
 
     <script>
-
-
-      //saat pilihan provinsi di pilih, maka akan mengambil data kota
-      //di data-wilayah.php menggunakan ajax
       $("#id_kab_kota").change(function(){
       var id_kab_kota = $(this).val(); 
       $.ajax({
@@ -94,9 +101,108 @@ session_start();
           }
       });                   
     }); 
+
+    $(document).on("click",".btnlaporrekap",function(){
+    var type_lapor  = $("#type_lapor").val();
+    var t1          = $("#t1").val();
+    var t2          = $("#t2").val();
+
+    if(type_lapor == 'Laporan Rekap Gangguan'){
+      window.open('tcpdf/examples/lap_rekap_gangguan.php?&t1='+t1+'&t2='+t2);
+    }
+    if(type_lapor == 'Laporan Rekap Pelanggan'){
+      window.open('tcpdf/examples/lap_rekap_pelanggan.php');
+    }
+    if(type_lapor == 'Laporan Rekap Pendapatan'){
+      window.open('tcpdf/examples/lap_rekap_pendapatan.php');
+    }
+    
+    });
       
     </script>
 
+  <script>
+
+        function showGraph()
+        {
+            {
+                $.post("json_jumlah_pelanggan.php",
+                function (data)
+                {
+                    console.log(data);
+                     var b = [];
+                    var jumlah = [];
+
+                    for (var i in data) {
+                        b.push(data[i].b);
+                        jumlah.push(data[i].jumlah);
+                    }
+
+                    var chartdata = {
+                        labels: b,
+                        responsive:true,
+                        datasets: [
+                            {
+                                label: 'Jumlah Pelanggan Aktif',
+                                backgroundColor: '#f049ff',
+                                borderColor: '#eb46f1',
+                                hoverBackgroundColor: '#CCCCCC',
+                                hoverBorderColor: '#666666',
+                                data:jumlah
+                            }
+                        ]
+                    };
+
+                    var graphTarget = $("#graphCanvas");
+                    var barGraph = new Chart(graphTarget, {
+                        type: 'horizontalBar',
+                        data: chartdata
+                    });
+                });
+            }
+        }
+
+        function graph_pendapatan_all()
+        {
+            {
+                $.post("json_jumlah_pendapatan.php",
+                function (data)
+                {
+                    console.log(data);
+                    var nama_kota = [];
+                    var total = [];
+
+                    for (var i in data) {
+                        nama_kota.push(data[i].nama_kota);
+                        total.push(data[i].total);
+                    }
+
+                    var chartdata = {
+                        labels: nama_kota,
+                        responsive:true,
+                        animation: false,
+                        datasets: [
+                            {
+                                label: 'Jumlah Pendapatan',
+                              backgroundColor: '#f049ff',
+                                borderColor: '#eb46f1',
+                                hoverBackgroundColor: '#CCCCCC',
+                                hoverBorderColor: '#666666',
+                                data:total
+                            }
+                        ]
+                    };
+
+
+                    var graphTarget = $("#graph_pendapatan_all");
+                    var barGraph = new Chart(graphTarget, {
+                        type: 'horizontalBar',
+                        data: chartdata
+                    });
+                });
+            }
+        }
+        </script>
    
 </body>
 </html>
