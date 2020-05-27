@@ -1,7 +1,9 @@
 <?php
 
 include "../../koneksi/config.php";
-$ket = $_GET[t];
+$ket = $_GET['t'];
+$tgl1 = $_GET['tgl1'];
+$tgl2 = $_GET['tgl2'];
 // Include the main TCPDF library (search for installation path).
 require_once('tcpdf_include.php');
 
@@ -73,27 +75,43 @@ $table = '<table style="border:1px solid #000; padding:6px;">
 			<th style="border:1px solid #000; width:30px;">No.</th>
 			<th style="border:1px solid #000; width:150;">Nama</th>
 			<th style="border:1px solid #000; width:100;">No. Inet</th>
-			<th style="border:1px solid #000; width:80;">Tgl Jtt</th>
+			<th style="border:1px solid #000; width:80;">Tanggal</th>
 			<th style="border:1px solid #000; width:95;">No. Hp</th>
 			<th style="border:1px solid #000; width:150;">Kota / Kab</th>
 			<th style="border:1px solid #000; width:150;">Kecamatan</th>
 			<th style="border:1px solid #000; width:150;">Kelurahan</th>
 		</tr>';
 
-			$sql = mysqli_query($con,"SELECT * FROM tbl_pelanggan 
-			inner join tbl_kab_kota on tbl_pelanggan.id_kab_kota = tbl_kab_kota.id_kab_kota 
-			inner join tbl_kecamatan on tbl_pelanggan.id_kecamatan = tbl_kecamatan.id_kecamatan 
-			inner join tbl_kelurahan on tbl_pelanggan.id_kelurahan = tbl_kelurahan.id_kelurahan 
-			inner join tbl_paket on tbl_pelanggan.id_paket = tbl_paket.id_paket 
-			where tbl_pelanggan.status = '$ket'");
+			if($ket == 'Aktif'){
+				$sql = mysqli_query($con,"SELECT * FROM tbl_pelanggan 
+				inner join tbl_kab_kota on tbl_pelanggan.id_kab_kota = tbl_kab_kota.id_kab_kota 
+				inner join tbl_kecamatan on tbl_pelanggan.id_kecamatan = tbl_kecamatan.id_kecamatan 
+				inner join tbl_kelurahan on tbl_pelanggan.id_kelurahan = tbl_kelurahan.id_kelurahan 
+				inner join tbl_paket on tbl_pelanggan.id_paket = tbl_paket.id_paket 
+				where tbl_pelanggan.status = '$ket' and tbl_pelanggan.tgl_aktivasi between '$tgl1' and '$tgl2'");
+
+			}else{
+				$sql = mysqli_query($con,"SELECT * FROM tbl_pelanggan 
+				inner join tbl_kab_kota on tbl_pelanggan.id_kab_kota = tbl_kab_kota.id_kab_kota 
+				inner join tbl_kecamatan on tbl_pelanggan.id_kecamatan = tbl_kecamatan.id_kecamatan 
+				inner join tbl_kelurahan on tbl_pelanggan.id_kelurahan = tbl_kelurahan.id_kelurahan 
+				inner join tbl_paket on tbl_pelanggan.id_paket = tbl_paket.id_paket 
+				where tbl_pelanggan.status = '$ket' and tbl_pelanggan.tgl_berhenti between '$tgl1' and '$tgl2'");
+			}
+			
 			$no=1;
 			while ($pelanggan = mysqli_fetch_array($sql)) {
+				if($_GET['cari'] == 'Aktif'){
+					$f_tanggal = date("d-m-yy",strtotime($pelanggan['tgl_aktivasi']));
+				}else{
+					$f_tanggal = date("d-m-yy",strtotime($pelanggan['tgl_berhenti']));
+				}
 								$table .='
 								<tr>
 									<td style="border:1px solid #000; width:30;">'.$no++.'</td>
 									<td style="border:1px solid #000; width:150;">'.$pelanggan['nama_pelanggan'].'</td>
 									<td style="border:1px solid #000;">'.$pelanggan['no_inet'].'</td>
-									<td style="border:1px solid #000;">'.$pelanggan['tgl_jtt'].'</td>
+									<td style="border:1px solid #000;">'.$f_tanggal.'</td>
 									<td style="border:1px solid #000;">'.$pelanggan['no_tlp'].'</td>
 									<td style="border:1px solid #000;">'.$pelanggan['nama_kab_kota'].'</td>
 									<td style="border:1px solid #000;">'.$pelanggan['nama_kelurahan'].'</td>

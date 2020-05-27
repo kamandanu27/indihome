@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 26 Mei 2020 pada 19.57
+-- Generation Time: 27 Mei 2020 pada 09.05
 -- Versi Server: 10.1.28-MariaDB
 -- PHP Version: 7.1.10
 
@@ -88517,6 +88517,8 @@ CREATE TABLE `tbl_pelanggan` (
   `foto_selfie` varchar(100) NOT NULL,
   `no_inet` varchar(15) NOT NULL,
   `id_paket` int(11) NOT NULL,
+  `tgl_aktivasi` date NOT NULL,
+  `tgl_berhenti` date NOT NULL,
   `tgl_jtt` date NOT NULL,
   `id_user` int(5) NOT NULL,
   `status` varchar(15) NOT NULL
@@ -88526,9 +88528,9 @@ CREATE TABLE `tbl_pelanggan` (
 -- Dumping data untuk tabel `tbl_pelanggan`
 --
 
-INSERT INTO `tbl_pelanggan` (`id_pelanggan`, `nama_pelanggan`, `alamat`, `id_kab_kota`, `id_kecamatan`, `id_kelurahan`, `no_tlp`, `email`, `password`, `foto_ktp`, `foto_selfie`, `no_inet`, `id_paket`, `tgl_jtt`, `id_user`, `status`) VALUES
-(7, 'Kamandanu Sugiarto', 'Puri Indah Residance', '6372', '6372011', '6372011002', '082295644497', 'kamandanu.mataramtsk@gmail.com', 'kamandanu', '1589730251_ktp.jpg', '1589730251_selfie.jpg', '484904233159', 2, '2020-05-22', 13, 'Aktif'),
-(8, 'Cristiano Ronaldo', 'Spanyol', '6372', '6372011', '6372011002', '08265467776', 'cr7@gmail.com', 'cr7', '1590113292_ktp_2.jpg', '1590113292_selfie_2.jpg', '211111719117', 2, '2020-05-22', 15, 'Aktif');
+INSERT INTO `tbl_pelanggan` (`id_pelanggan`, `nama_pelanggan`, `alamat`, `id_kab_kota`, `id_kecamatan`, `id_kelurahan`, `no_tlp`, `email`, `password`, `foto_ktp`, `foto_selfie`, `no_inet`, `id_paket`, `tgl_aktivasi`, `tgl_berhenti`, `tgl_jtt`, `id_user`, `status`) VALUES
+(7, 'Kamandanu Sugiarto', 'Puri Indah Residance', '6372', '6372011', '6372011002', '082295644497', 'kamandanu.mataramtsk@gmail.com', 'kamandanu', '1589730251_ktp.jpg', '1589730251_selfie.jpg', '484904233159', 2, '2020-05-22', '0000-00-00', '2020-05-22', 13, 'Aktif'),
+(8, 'Cristiano Ronaldo', 'Spanyol', '6372', '6372011', '6372011002', '08265467776', 'cr7@gmail.com', 'cr7', '1590113292_ktp_2.jpg', '1590113292_selfie_2.jpg', '211111719117', 2, '2020-05-22', '2020-05-27', '2020-05-22', 15, 'Berhenti');
 
 -- --------------------------------------------------------
 
@@ -88600,7 +88602,8 @@ CREATE TABLE `tbl_upgrade` (
 
 INSERT INTO `tbl_upgrade` (`id_upgrade`, `no_inet`, `id_addon`, `status`) VALUES
 (5, '484904233159', 'ADD001', 'Berhenti'),
-(8, '484904233159', 'ADD002', 'Aktif');
+(8, '484904233159', 'ADD002', 'Berhenti'),
+(9, '484904233159', 'ADD001', 'Aktif');
 
 -- --------------------------------------------------------
 
@@ -88720,7 +88723,7 @@ ALTER TABLE `tbl_pelanggan`
 -- AUTO_INCREMENT for table `tbl_upgrade`
 --
 ALTER TABLE `tbl_upgrade`
-  MODIFY `id_upgrade` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_upgrade` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `tbl_user`

@@ -164,10 +164,10 @@
                         <?php
                         if($_SESSION['level'] == 'admin'){
                             $query = mysqli_query($con, "select count(*) as jumlah from tbl_upgrade inner join tbl_pelanggan on tbl_upgrade.no_inet = tbl_upgrade.no_inet 
-                            where tbl_upgrade.status = 'Aktif'");
+                            where tbl_upgrade.status = 'Aktif' and tbl_pelanggan.status = 'Aktif'");
                         }else{
                             $query = mysqli_query($con, "select count(*) as jumlah from tbl_upgrade inner join tbl_pelanggan on tbl_upgrade.no_inet = tbl_upgrade.no_inet 
-                            where tbl_upgrade.status = 'Aktif' and tbl_pelanggan.id_kab_kota = '$id_wilayah'");
+                            where tbl_upgrade.status = 'Aktif' and tbl_pelanggan.id_kab_kota = '$id_wilayah' and tbl_pelanggan.status = 'Aktif'");
                         }
                             $pelanggan = mysqli_fetch_array($query);
                             $total = $pelanggan['jumlah'];

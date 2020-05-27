@@ -167,7 +167,7 @@ if(isset($_SESSION['level'])){
 
 
                         
-                        mysqli_query($con, "UPDATE tbl_pelanggan SET tgl_jtt = '$tgl', no_inet = '$no_inet', status = 'Aktif'
+                        mysqli_query($con, "UPDATE tbl_pelanggan SET tgl_jtt = '$tgl', tgl_aktivasi = '$tgl', no_inet = '$no_inet', status = 'Aktif'
                                         WHERE id_pelanggan = '$id'");
                         
                         echo "<script>window.alert('Pelanggan Baru Berhasil Diaktifkan');
@@ -176,8 +176,9 @@ if(isset($_SESSION['level'])){
 
                 if($_GET['act'] == 'nonaktifkan'){
                         $id = $_GET['id'];
+                        $tgl =  date('Y-m-d');
                         
-                        mysqli_query($con, "UPDATE tbl_pelanggan SET status = 'Berhenti'
+                        mysqli_query($con, "UPDATE tbl_pelanggan SET tgl_berhenti = '$tgl', status = 'Berhenti'
                                         WHERE id_pelanggan = '$id'");
                         
                         echo "<script>window.alert('Pelanggan Berhasil DiNonaktifkan');
