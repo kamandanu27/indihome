@@ -25,7 +25,7 @@ $pelanggan = mysqli_fetch_array($q_pelanggan);
                         <ul class="nav">
                             <?php 
                             $q_upgrade = mysqli_query($con, "select * from tbl_upgrade 
-                            where no_inet = '$pelanggan[no_inet]' and id_addon = '$data[id_addon]'");
+                            where no_inet = '$pelanggan[no_inet]' and id_addon = '$data[id_addon]' order by id_upgrade Desc");
                             if(mysqli_num_rows($q_upgrade) > 0){
                                 $upgrade = mysqli_fetch_array($q_upgrade);
                             
