@@ -1,5 +1,6 @@
 <?php
 include "koneksi/config.php";
+
 if(isset($_SESSION['level'])){
     if($_SESSION['level'] == 'pelanggan'){
     
@@ -29,8 +30,9 @@ if(isset($_SESSION['level'])){
         if($_GET['act'] == 'aktifkan'){
             $id_upgrade      = $_GET['id'];
             $v               = $_GET['v'];
+            $tgl =  date('Y-m-d');
             
-            mysqli_query($con, "UPDATE tbl_upgrade SET status = 'Aktif'
+            mysqli_query($con, "UPDATE tbl_upgrade SET status = 'Aktif', tgl_aktivasi = '$tgl'
                                     WHERE id_upgrade = '$id_upgrade'");
 
                 echo "<script>window.alert('Status Upgrade Addon Berhasil DIrubah');
@@ -40,8 +42,9 @@ if(isset($_SESSION['level'])){
         if($_GET['act'] == 'nonaktifkan'){
             $id_upgrade      = $_GET['id'];
             $v               = $_GET['v'];
+            $tgl =  date('Y-m-d');
             
-            mysqli_query($con, "UPDATE tbl_upgrade SET status = 'Berhenti'
+            mysqli_query($con, "UPDATE tbl_upgrade SET status = 'Berhenti', tgl_berhenti = '$tgl'
                                     WHERE id_upgrade = '$id_upgrade'");
 
                 echo "<script>window.alert('Status Upgrade Addon Berhasil DIrubah');

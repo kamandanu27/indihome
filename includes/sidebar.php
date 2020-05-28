@@ -41,6 +41,23 @@
 							</ul>
 						</li>
 						<li>
+							<a href=""><i class="fa fa-sitemap"></i> Laporan Upgrade Addon<span class="fa arrow"></span></a>
+							<ul class="nav nav-second-level">
+								<li>
+									<a href="main.php?module=laporan_upgrade&cari=1"> Permintaan Upgrade</a>
+								</li>
+								<li>
+									<a href="main.php?module=laporan_upgrade&cari=2"> Permintaan Berhenti</a>
+								</li>
+								<li>
+									<a href="main.php?module=laporan_upgrade&cari=3"> Pelanggan Aktif</a>
+								</li>
+								<li>
+									<a href="main.php?module=laporan_upgrade&cari=4"> Pelanggan Berhenti</a>
+								</li>
+							</ul>
+						</li>
+						<li>
 							<a href="main.php?module=laporan_pembayaran"><i class="fa fa-desktop"></i> Laporan Pembayaran</a>
 						</li>
 						<li>

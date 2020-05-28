@@ -29,6 +29,9 @@ if(isset($_SESSION['level'])){
 		if ($_GET['module']=='menu_rekap'){
 			include "view_menu_rekap.php";
 		}
+		if ($_GET['module']=='laporan_upgrade'){
+			include "view_laporan_upgrade.php";
+		}
 
 	}
 

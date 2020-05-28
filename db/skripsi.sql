@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 27 Mei 2020 pada 09.05
+-- Generation Time: 28 Mei 2020 pada 05.11
 -- Versi Server: 10.1.28-MariaDB
 -- PHP Version: 7.1.10
 
@@ -88593,6 +88593,8 @@ CREATE TABLE `tbl_upgrade` (
   `id_upgrade` int(11) NOT NULL,
   `no_inet` varchar(20) NOT NULL,
   `id_addon` varchar(15) NOT NULL,
+  `tgl_aktivasi` date NOT NULL,
+  `tgl_berhenti` date NOT NULL,
   `status` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -88600,10 +88602,10 @@ CREATE TABLE `tbl_upgrade` (
 -- Dumping data untuk tabel `tbl_upgrade`
 --
 
-INSERT INTO `tbl_upgrade` (`id_upgrade`, `no_inet`, `id_addon`, `status`) VALUES
-(5, '484904233159', 'ADD001', 'Berhenti'),
-(8, '484904233159', 'ADD002', 'Berhenti'),
-(9, '484904233159', 'ADD001', 'Aktif');
+INSERT INTO `tbl_upgrade` (`id_upgrade`, `no_inet`, `id_addon`, `tgl_aktivasi`, `tgl_berhenti`, `status`) VALUES
+(5, '484904233159', 'ADD001', '0000-00-00', '2020-05-24', 'Berhenti'),
+(8, '484904233159', 'ADD002', '0000-00-00', '2020-05-24', 'Berhenti'),
+(9, '484904233159', 'ADD001', '2020-05-26', '0000-00-00', 'Aktif');
 
 -- --------------------------------------------------------
 

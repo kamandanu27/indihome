@@ -48,6 +48,16 @@ require_once "koneksi/config.php";
                         } ?>" class="btn btn-default btn-sm" target="_blank">
                             <i class="fa fa-print"> Cetak Pdf </i>
                         </a>
+
+                        <a href="export_pelanggan.php?&t=<?php echo $_GET['cari']; 
+                        if(isset($_POST['cari'])){
+                            echo '&tgl1='.$_POST['tgl1'].'&tgl2='.$_POST['tgl2'];
+                        }else{
+                            $tgl_sekarang = date('Y-m-d');
+                            echo '&tgl1='.$tgl_sekarang.'&tgl2='.$tgl_sekarang;
+                        } ?>" class="btn btn-success btn-sm" target="_blank">
+                            <i class="fa fa-excel"> Cetak excel </i>
+                        </a>
 						
                     </div>
                 </div>
