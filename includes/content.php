@@ -14,6 +14,13 @@ if(isset($_SESSION['level'])){
 		if ($_GET['module']=='karyawan'){
 			include "view_karyawan.php";
 		}
+		if ($_GET['module']=='addon'){
+			include "view_addon.php";
+		}
+		if ($_GET['module']=='paket'){
+			include "view_paket.php";
+		}
+
 		if ($_GET['module']=='profil'){
 			include "view_profil.php";
 		}

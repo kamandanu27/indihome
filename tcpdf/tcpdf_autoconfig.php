@@ -144,20 +144,12 @@ if (!defined('PDF_AUTHOR')) {
 	define ('PDF_AUTHOR', 'TCPDF');
 }
 
-include "../../../include_koneksi.php";
-
-$q_sekolah 	= mysqli_query($con, "select * from tbl_sekolah");
-$sekolah	= mysqli_fetch_array($q_sekolah);
-$nama_sekolah = $sekolah['nama_sekolah'];
-$alamat_sekolah = $sekolah['alamat'];
-$no_tlp = $sekolah['no_tlp'];
-
 if (!defined('PDF_HEADER_TITLE')) {
-	define ('PDF_HEADER_TITLE', $nama_sekolah);
+	define ('PDF_HEADER_TITLE', 'TCPDF Example');
 }
 
 if (!defined('PDF_HEADER_STRING')) {
-	define ('PDF_HEADER_STRING', $alamat_sekolah ."\n". $no_tlp );
+	define ('PDF_HEADER_STRING', "Indonesia Digital Home | Internet Speedy - USEETV - Smart Home\nJl. Pangeran Samudera No. 92 Banjarmasin\nTlp : (0711) 367769");
 }
 
 if (!defined('PDF_UNIT')) {

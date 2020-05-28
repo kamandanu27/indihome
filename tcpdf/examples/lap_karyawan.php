@@ -15,7 +15,7 @@ $pdf->SetSubject('TCPDF Tutorial');
 $pdf->SetKeywords('TCPDF, PDF, example, test, guide');
 
 // set default header data
-$pdf->SetHeaderData( PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE.' ', PDF_HEADER_STRING);
+$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE.' ', PDF_HEADER_STRING);
 
 // set header and footer fonts
 $pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
@@ -25,7 +25,7 @@ $pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
 $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
 
 // set margins
-$pdf->SetMargins(PDF_MARGIN_LEFT, 13, PDF_MARGIN_RIGHT);
+$pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
 $pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
 $pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
 
@@ -47,7 +47,7 @@ if (@file_exists(dirname(__FILE__).'/lang/eng.php')) {
 $pdf->SetFont('times', '', 9);
 
 // add a page
-$pdf->AddPage('L');
+$pdf->AddPage('R');
 
 // set cell padding
 $pdf->setCellPaddings(1, 1, 1, 1);
@@ -73,7 +73,6 @@ $table = '<table style="border:1px solid #000; padding:6px;">
 			<th style="border:1px solid #000; width:150;">NIK</th>
 			<th style="border:1px solid #000; width:300;">Nama</th>
 			<th style="border:1px solid #000; width:150;">Wilayah</th>
-			<th style="border:1px solid #000; width:150;">Username</th>
 		</tr>';
 
 				$sql = mysqli_query($con,"SELECT * FROM tbl_karyawan  
@@ -89,7 +88,6 @@ $table = '<table style="border:1px solid #000; padding:6px;">
 				<td style="border:1px solid #000;">'.$karyawan['nik'].'</td>
 				<td style="border:1px solid #000;">'.$karyawan['nama_karyawan'].'</td>
 				<td style="border:1px solid #000;">'.$karyawan['nama_kab_kota'].'</td>
-				<td style="border:1px solid #000;">'.$karyawan['username'].'</td>
 			</tr>';
 			
 			}

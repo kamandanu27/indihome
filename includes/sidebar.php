@@ -16,6 +16,12 @@
 							</ul>
 						</li>
 						<li>
+							<a href="main.php?module=paket"><i class="fa fa-desktop"></i> Laporan Master Paket</a>
+						</li>
+						<li>
+							<a href="main.php?module=addon"><i class="fa fa-desktop"></i> Laporan Master Addon</a>
+						</li>
+						<li>
 							<a href=""><i class="fa fa-sitemap"></i> Laporan Pelanggan<span class="fa arrow"></span></a>
 							<ul class="nav nav-second-level">
 								<li>

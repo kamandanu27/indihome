@@ -110,7 +110,7 @@ define ('PDF_AUTHOR', 'TCPDF');
 /**
  * Header title.
  */
-//define ('PDF_HEADER_TITLE', 'SMK Cendekia Bangsa');
+define ('PDF_HEADER_TITLE', 'PT. Telekomunikasi Indonesia');
 
 /**
  * Header description string.

@@ -115,6 +115,9 @@ if(isset($_GET['act'])){
                         <a href="main.php?module=paket&act=t" class="btn btn-default btn-sm">
                             <i class="fa fa-plus"> Tambah </i>
                         </a>
+                        <a href="tcpdf/examples/lap_paket.php" class="btn btn-success btn-sm" target="_blank">
+                            <i class="fa fa-print"> Cetak PDF </i>
+                        </a>
                     </div>
                 </div>
                 <div class="panel-body">
